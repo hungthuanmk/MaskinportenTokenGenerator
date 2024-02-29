@@ -2,7 +2,7 @@
 $PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
 Set-Location $PSScriptRoot
 
-$MPEXE = Join-Path $PSScriptRoot "src\MaskinportenTokenGenerator\bin\Debug\net8.0\MaskinportenTokenGenerator"
+$MPEXE = Join-Path $PSScriptRoot "src\MaskinportenTokenGenerator\bin\Debug\net8.0\MaskinportenTokenGenerator.exe"
 if (-not (Test-Path $MPEXE)) {
     Write-Host "$MPEXE not found. Build it first."
     Pause
@@ -21,7 +21,7 @@ if ($args[0] -eq "onlytoken") {
 
 $local_config = $null
 if ([string]::IsNullOrEmpty($args[2])) {
-    $local_config = "config.local.ps1"
+    $local_config = ".\config.local.ps1"
 } else {
     if (-not (Test-Path $args[2])) {
         Write-Host "Unable to load custom config file: $($args[2])"
